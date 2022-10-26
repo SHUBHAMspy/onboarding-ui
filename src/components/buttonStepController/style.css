@@ -1,0 +1,14 @@
+.login-button{
+  width: 340px;
+  height: 40px;
+  padding: 10px;
+  border: none;
+  background-color: var(--purple);
+  color: white;
+  border-radius: 5px;
+  font-weight:normal;
+  font-size: 12px;
+  cursor: pointer;
+  
+  
+}

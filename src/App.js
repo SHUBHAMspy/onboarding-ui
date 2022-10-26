@@ -1,23 +1,56 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import ButtonStepController from './components/buttonStepController/ButtonStepController';
+import Logo from './components/common/logo/Logo';
+import CongratulationScreen from './components/steps/CongratulationScreen';
+import PlanSetup from './components/steps/PlanSetup';
+import Welcome from './components/steps/Welcome';
+import WorkspaceSetup from './components/steps/WorkspaceSetup';
+import StepShowcaser from './components/stepShowcase/StepShowcaser';
 
 function App() {
+
+  const [currentStep, setCurrentStep] = useState(1);
+  // const { userData, setUserData } = useContext(UseContextProvider)
+
+  const steps = [1,2,3,4];
+
+  const displayStep = (step) => {
+    switch (step) {
+      case 1:
+        return <Welcome />;
+      case 2:
+        return <WorkspaceSetup />;
+      case 3:
+        return <PlanSetup />;
+      case 4:
+        return <CongratulationScreen />;
+      default:
+    }
+  };
+
+  const handleClick = (direction) => {
+    let newStep = currentStep;
+
+    if(direction === "create") newStep++ ;
+
+    newStep > 0 && newStep <= steps.length && setCurrentStep(newStep);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div className="login">
+        <Logo/>
+        <StepShowcaser steps={steps} currentStep={currentStep}/>
+        <div style={{marginTop: "10px",padding:"10px"}}>
+          {displayStep(currentStep)}
+        </div>
+        <ButtonStepController 
+          handleClick={handleClick} 
+          currentStep={currentStep} 
+          buttonName={currentStep === 4 ? 'Launch Eden' : 'Create Workspace'}
+        />
+      </div>
+      
     </div>
   );
 }
