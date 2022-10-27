@@ -35,7 +35,7 @@ const PlanSetup = () => {
               key={plan.id}
               onClick={() => {
                 setSelected(plan) 
-                setUserData({...userData, ['plan']:plan.plan})
+                setUserData({...userData, plan:plan.plan})
               }}
             >
               <img src={plan.img} alt={plan.plan} width='17px' height='20px'/>
