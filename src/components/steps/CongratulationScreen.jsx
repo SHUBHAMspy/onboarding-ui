@@ -2,7 +2,7 @@ import React from 'react';
 import { useStepperContext } from '../../context/StepperContext';
 
 const CongratulationScreen = () => {
-  const { userData, setUserData } = useStepperContext();
+  const { userData } = useStepperContext();
   
   return (
     <div className='congratulations'>

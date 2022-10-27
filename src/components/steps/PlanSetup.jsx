@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useStepperContext } from '../../context/StepperContext';
 import forMe from "./onlyme.png";
 import './style.css';
 import forTeam from './team.png';
 
 const PlanSetup = () => {
   const [selected, setSelected] = useState('')
+  const { userData,setUserData } = useStepperContext();
   const plans = [
     {
       id: 1,
@@ -31,7 +33,10 @@ const PlanSetup = () => {
             <div 
               className={`plan ${selected.id === plan.id  ? 'selected' : ''}`} 
               key={plan.id}
-              onClick={() => setSelected(plan) }
+              onClick={() => {
+                setSelected(plan) 
+                setUserData({...userData, ['plan']:plan.plan})
+              }}
             >
               <img src={plan.img} alt={plan.plan} width='17px' height='20px'/>
               <span className='plan-title'>{plan.plan}</span>

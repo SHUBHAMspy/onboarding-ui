@@ -1,9 +1,11 @@
 import React from 'react';
+import { useStepperContext } from '../../context/StepperContext';
 import Input from '../common/input/Input';
 import './style.css';
 
 const WorkspaceSetup = () => {
 
+  const { userData,setUserData } = useStepperContext();
   const inputs = [
     {
       id: 1,
@@ -24,9 +26,12 @@ const WorkspaceSetup = () => {
     
   ];
 
-  const onChange = () => {
-
-  }
+  
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserData({ ...userData, [name]: value });
+  };
+  
 
   return (
     <>
@@ -38,15 +43,22 @@ const WorkspaceSetup = () => {
               <Input
                 key={input.id}
                 {...input}
-                // value={formData[input.name]}
-                onChange={onChange}
+                value={userData[input.name] || ''}
+                onChange={handleChange}
               />
             ))}
             <div className='formInput'>
               <label htmlFor="">Workspace URL(optional)</label>
               <div className='workspace-url'>
                 <div className='start-link'>www.eden.com/</div>
-                <input className='example-url' type="text" placeholder='Example' />
+                <input 
+                  className='example-url' 
+                  name='url' 
+                  type="text" 
+                  value={userData['url'] || ''}
+                  placeholder='Example' 
+                  onChange={handleChange}
+                  />
               </div>
             </div>
             
