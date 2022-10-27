@@ -1,9 +1,11 @@
 import React from 'react';
+import { useStepperContext } from '../../context/StepperContext';
 import Input from '../common/input/Input';
 import './style.css';
 
 const Welcome = () => {
 
+  const { userData, setUserData } = useStepperContext();
   const inputs = [
     {
       id: 1,
@@ -18,7 +20,7 @@ const Welcome = () => {
     },
     {
       id: 2,
-      name: "identifier",
+      name: "displayname",
       type: "text",
       placeholder: "Steve",
       label: "Display Name",
@@ -26,9 +28,12 @@ const Welcome = () => {
     
   ];
   
-  const onChange = () => {
+  
 
-  }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserData({ ...userData, [name]: value });
+  };
   return (
     <>
         {/* {error && <div className='error-card'>{error.message}</div>} */}
@@ -40,8 +45,8 @@ const Welcome = () => {
               <Input
                 key={input.id}
                 {...input}
-                // value={formData[input.name]}
-                onChange={onChange}
+                value={userData[input.name] || ""}
+                onChange={handleChange}
               />
             ))}
           </div>
