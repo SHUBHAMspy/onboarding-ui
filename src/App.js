@@ -37,11 +37,11 @@ function App() {
     newStep > 0 && newStep <= steps.length && setCurrentStep(newStep);
   };
   return (
-    <div>
+    <div className='container'>
       <div className="login">
         <Logo/>
         <StepShowcaser steps={steps} currentStep={currentStep}/>
-        <div style={{marginTop: "10px",padding:"10px"}}>
+        <div style={{marginTop: "10px",padding:"10px",width:"380px"}}>
           {displayStep(currentStep)}
         </div>
         <ButtonStepController 
