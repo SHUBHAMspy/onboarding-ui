@@ -41,7 +41,7 @@ function App() {
       <div className="login">
         <Logo/>
         <StepShowcaser steps={steps} currentStep={currentStep}/>
-        <div style={{marginTop: "10px",padding:"10px",width:"380px"}}>
+        <div className='form-container'>
           {displayStep(currentStep)}
         </div>
         <ButtonStepController 
